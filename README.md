@@ -64,7 +64,7 @@ composer require nfephp-org/sped-nfse-issnet:dev-master --prefer-dist
 
 *Após os stable realeases estarem disponíveis, este pacote poderá ser instalado com:*
 ```bash
-composer require nfephp-org/sped-nfse-nacional
+composer require nfephp-org/sped-nfse-issnet
 ```
 Ou ainda alterando o composer.json do seu aplicativo inserindo:
 ```json
