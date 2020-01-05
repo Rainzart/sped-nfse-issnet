@@ -2,19 +2,22 @@
 
 API para integraçao para geração de NFSe (Prefeituras) com o modelo ISS.NET
 
-# NOTA: APENAS DADOS INICIAIS NADA UTIL
+# EM DESENVONVIMENTO NÃO FUNCIONAL
 
-## Prefeituras
+## Prefeituras (até o momento localidas 12 prefeituras usando esse modelo) 
 
-- Cascavel (PR)
-- Praia Grande (SP)
-- São Vicente (SP)
 - Anapolis (GO)
 - Barcarena (PA)
+- Cascavel (PR)
+- Barra MAnsa (RJ)
+- Dique de Caxias (RJ)
+- Itatiaia (RJ)
+- Lorena (SP)
+- Praia Grande (SP)
+- São Vicente (SP)
 - Jacarei (SP)
 - Novo Hamburgo (RS)
 - Santa Maria (RS)
-- ...
 
 ## Dependências
 

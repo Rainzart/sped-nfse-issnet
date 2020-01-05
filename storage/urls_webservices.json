@@ -1,0 +1,110 @@
+{
+    "1501303": {
+        "municipio": "Barcarena",
+        "uf": "PA",
+        "homologacao": "http:\/\/www.issnetonline.com.br\/webserviceabrasf\/homologacao\/servicos.asmx",
+        "producao": "http:\/\/www.issnetonline.com.br\/webserviceabrasf\/barcarena\/servicos.asmx",
+        "version": "1.00",
+        "msgns": "http://www.issnetonline.com.br/webserviceabrasf/vsd",
+        "soapns": "http://www.issnetonline.com.br/webservice/nfd"
+    },
+    "3300407": {
+        "municipio": "Barra Mansa",
+        "uf": "RJ",
+        "homologacao": "http:\/\/www.issnetonline.com.br\/webserviceabrasf\/homologacao\/servicos.asmx",
+        "producao": "http:\/\/www.issnetonline.com.br\/webserviceabrasf\/barramansa\/servicos.asmx",
+        "version": "1.00",
+        "msgns": "http://www.issnetonline.com.br/webserviceabrasf/vsd",
+        "soapns": "http://www.issnetonline.com.br/webservice/nfd"
+    },
+    "3301702": {
+        "municipio": "Duque de Caxias",
+        "uf": "RJ",
+        "homologacao": "http:\/\/www.issnetonline.com.br\/webserviceabrasf\/homologacao\/servicos.asmx",
+        "producao": "http:\/\/www.issnetonline.com.br\/webserviceabrasf\/duquedecaxias\/servicos.asmx",
+        "version": "1.00",
+        "msgns": "http://www.issnetonline.com.br/webserviceabrasf/vsd",
+        "soapns": "http://www.issnetonline.com.br/webservice/nfd"
+    },
+    "3302254": {
+        "municipio": "Itatiaia",
+        "uf": "RJ",
+        "homologacao": "http:\/\/www.issnetonline.com.br\/webserviceabrasf\/homologacao\/servicos.asmx",
+        "producao": "http:\/\/www.issnetonline.com.br\/webserviceabrasf\/itatiaia\/servicos.asmx",
+        "version": "1.00",
+        "msgns": "http://www.issnetonline.com.br/webserviceabrasf/vsd",
+        "soapns": "http://www.issnetonline.com.br/webservice/nfd"
+    },
+    "3524402": {
+        "municipio": "Jacareí",
+        "uf": "SP",
+        "homologacao": "http:\/\/www.issnetonline.com.br\/webserviceabrasf\/homologacao\/servicos.asmx",
+        "producao": "http:\/\/www.issnetonline.com.br\/webserviceabrasf\/jacarei\/servicos.asmx",
+        "version": "1.00",
+        "msgns": "http://www.issnetonline.com.br/webserviceabrasf/vsd",
+        "soapns": "http://www.issnetonline.com.br/webservice/nfd"
+    },
+    "3527207": {
+        "municipio": "Lorena",
+        "uf": "SP",
+        "homologacao": "http:\/\/www.issnetonline.com.br\/webserviceabrasf\/homologacao\/servicos.asmx",
+        "producao": "http:\/\/www.issnetonline.com.br\/webserviceabrasf\/lorena\/servicos.asmx",
+        "version": "1.00",
+        "msgns": "http://www.issnetonline.com.br/webserviceabrasf/vsd",
+        "soapns": "http://www.issnetonline.com.br/webservice/nfd"
+    },
+    "3541000": {
+        "municipio": "Praia Grande",
+        "uf": "SP",
+        "homologacao": "http:\/\/www.issnetonline.com.br\/webserviceabrasf\/homologacao\/servicos.asmx",
+        "producao": "http:\/\/www.issnetonline.com.br\/webserviceabrasf\/praiagrande\/servicos.asmx",
+        "version": "1.00",
+        "msgns": "http://www.issnetonline.com.br/webserviceabrasf/vsd",
+        "soapns": "http://www.issnetonline.com.br/webservice/nfd"
+    },
+    "3551009": {
+        "municipio": "São Vicente",
+        "uf": "SP",
+        "homologacao": "http:\/\/www.issnetonline.com.br\/webserviceabrasf\/homologacao\/servicos.asmx",
+        "producao": "http:\/\/www.issnetonline.com.br\/webserviceabrasf\/saovicente\/servicos.asmx",
+        "version": "1.00",
+        "msgns": "http://www.issnetonline.com.br/webserviceabrasf/vsd",
+        "soapns": "http://www.issnetonline.com.br/webservice/nfd"
+    },
+    "4104808": {
+        "municipio": "Cascavel",
+        "uf": "PR",
+        "homologacao": "http:\/\/www.issnetonline.com.br\/webserviceabrasf\/homologacao\/servicos.asmx",
+        "producao": "http:\/\/www.issnetonline.com.br\/webserviceabrasf\/cascavel\/servicos.asmx",
+        "version": "1.00",
+        "msgns": "http://www.issnetonline.com.br/webserviceabrasf/vsd",
+        "soapns": "http://www.issnetonline.com.br/webservice/nfd"
+    },
+    "4313409": {
+        "municipio": "Novo Hamburgo",
+        "uf": "RS",
+        "homologacao": "http:\/\/www.issnetonline.com.br\/webserviceabrasf\/homologacao\/servicos.asmx",
+        "producao": "http:\/\/www.issnetonline.com.br\/webserviceabrasf\/novohamburgo\/servicos.asmx",
+        "version": "1.00",
+        "msgns": "http://www.issnetonline.com.br/webserviceabrasf/vsd",
+        "soapns": "http://www.issnetonline.com.br/webservice/nfd"
+    },
+    "4316907": {
+        "municipio": "Santa Maria",
+        "uf": "RS",
+        "homologacao": "http:\/\/www.issnetonline.com.br\/webserviceabrasf\/homologacao\/servicos.asmx",
+        "producao": "http:\/\/www.issnetonline.com.br\/webserviceabrasf\/santamaria\/servicos.asmx",
+        "version": "1.00",
+        "msgns": "http://www.issnetonline.com.br/webserviceabrasf/vsd",
+        "soapns": "http://www.issnetonline.com.br/webservice/nfd"
+    },
+    "5201108": {
+        "municipio": "Anapolis",
+        "uf": "GO",
+        "homologacao": "http:\/\/www.issnetonline.com.br\/webserviceabrasf\/homologacao\/servicos.asmx",
+        "producao": "http:\/\/www.issnetonline.com.br\/webserviceabrasf\/anapolis\/servicos.asmx",
+        "version": "1.00",
+        "msgns": "http://www.issnetonline.com.br/webserviceabrasf/vsd",
+        "soapns": "http://www.issnetonline.com.br/webservice/nfd"
+    }
+}
