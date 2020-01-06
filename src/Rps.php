@@ -35,6 +35,9 @@ class Rps implements RpsInterface
      */
     protected $jsonschema;
     
+    protected $config;
+
+
     /**
      * Constructor
      * @param stdClass $rps
@@ -44,6 +47,12 @@ class Rps implements RpsInterface
         $this->init($rps);
     }
     
+    public function config($config)
+    {
+        $this->config = $config;
+    }
+        
+    
     /**
      * {@inheritdoc}
      */
@@ -51,7 +60,10 @@ class Rps implements RpsInterface
     {
         $this->init($rps);
         $fac = new Factory($this->std);
-        return $fac->render();
+        if (!empty($this->config)) {
+            $fac->addConfig($this->config);
+        }
+        return str_replace("<?xml version=\"1.0\" encoding=\"UTF-8\"?>", '', $fac->render());
     }
     
     /**

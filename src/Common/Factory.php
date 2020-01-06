@@ -34,6 +34,8 @@ class Factory
      * @var DOMNode
      */
     protected $rps;
+    
+    protected $config;
 
     /**
      * Constructor
@@ -50,6 +52,11 @@ class Factory
         $this->dom->formatOutput = false;
         $this->rps = $this->dom->createElement('tc:Rps');
         $this->rps->setAttribute('xmlns:tc', $tcnamespace);
+    }
+    
+    public function addConfig($config)
+    {
+        $this->config = $config;
     }
     
     /**
@@ -101,6 +108,7 @@ class Factory
         );
         
         $this->addServico($infRps);
+        $this->addPrestador($infRps);
         $this->addTomador($infRps);
         $this->addIntermediario($infRps);
         $this->addConstrucao($infRps);
@@ -110,6 +118,36 @@ class Factory
         return $this->dom->saveXML();
     }
     
+    protected function addPrestador(&$parent)
+    {
+        if (!isset($this->config)) {
+            return;
+        }
+        $node = $this->dom->createElement('Prestador');
+        $cpfcnpj = $this->dom->createElement('tc:CpfCnpj');
+        $this->dom->addChild(
+            $cpfcnpj,
+            "tc:Cnpj",
+            !empty($this->config->cnpj) ? $this->config->cnpj : null,
+            false
+        );
+        $this->dom->addChild(
+            $cpfcnpj,
+            "tc:Cpf",
+            !empty($this->config->cpf) ? $this->config->cpf : null,
+            false
+        );
+        $node->appendChild($cpfcnpj);
+        $this->dom->addChild(
+            $node,
+            "tc:InscricaoMunicipal",
+            $this->config->im,
+            true
+        );
+        $parent->appendChild($node);
+    }
+
+
     /**
      * Includes Identificacao TAG in parent NODE
      * @param DOMNode $parent
@@ -236,13 +274,17 @@ class Factory
         $this->dom->addChild(
             $valnode,
             "tc:Aliquota",
-            isset($val->aliquota) ? $val->aliquota : null,
+            isset($val->aliquota)
+                ? number_format($val->aliquota, 2, '.', '')
+                : null,
             false
         );
         $this->dom->addChild(
             $valnode,
             "tc:ValorLiquidoNfse",
-            isset($val->valorliquidonfse) ? $val->valorliquidonfse : null,
+            isset($val->valorliquidonfse)
+                ? number_format($val->valorliquidonfse, 2, '.', '')
+                : null,
             false
         );
         $this->dom->addChild(

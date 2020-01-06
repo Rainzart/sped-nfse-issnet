@@ -212,27 +212,48 @@ class Tools extends BaseTools
     }
     
     /**
-     * Consulta NFSe emitidas por faixa de numeros (SINCRONO)
-     * @param integer $nini
-     * @param integer $nfim
-     * @param integer $pagina
+     * Consulta
+     * @param integer $numero
+     * @param integer $codigo_tributacao
      * @return string
      */
     public function consultarVisualizacaoNfse($numero, $codigo_tributacao)
     {
         $xsd = "servico_consultar_url_visualizacao_nfse_envio.xsd";
         $operation = 'ConsultarUrlVisualizacaoNfse';
+        
         $content = "<ConsultarUrlVisualizacaoNfseEnvio "
             . "xmlns=\"{$this->wsobj->msgns}/{$xsd}\" "
             . "xmlns:tc=\"{$this->tcnamespace}\">"
             . $this->prestador
-            . "<Numero>2748</Numero>"
-            . "<CodigoTributacaoMunicipio>2</CodigoTributacaoMunicipio>"
+            . "<Numero>{$numero}</Numero>"
+            . "<CodigoTributacaoMunicipio>{$codigo_tributacao}</CodigoTributacaoMunicipio>"
             . "</ConsultarUrlVisualizacaoNfseEnvio>";
         Validator::isValid($content, "$this->xsdpath/{$xsd}");
         return $this->send($content, $operation);
     }
     
+    /**
+     * Consulta
+     * @param integer $numero
+     * @param integer $codigo_tributacao
+     * @return string
+     */
+    public function consultarVisualizacaoNfseSerie($numero, $codigo_tributacao, $codigo_serie)
+    {
+        $xsd = "servico_consultar_url_visualizacao_nfse_serie_envio.xsd";
+        $operation = 'ConsultarUrlVisualizacaoNfseSerie';
+        $content = "<ConsultarUrlVisualizacaoNfseSerieEnvio "
+            . "xmlns=\"{$this->wsobj->msgns}/{$xsd}\" "
+            . "xmlns:tc=\"{$this->tcnamespace}\">"
+            . $this->prestador
+            . "<Numero>{$numero}</Numero>"
+            . "<CodigoTributacaoMunicipio>{$codigo_tributacao}</CodigoTributacaoMunicipio>"
+            . "<CodigoSerie>{$codigo_serie}</CodigoSerie>"
+            . "</ConsultarUrlVisualizacaoNfseSerieEnvio>";
+        Validator::isValid($content, "$this->xsdpath/{$xsd}");
+        return $this->send($content, $operation);
+    }
     
     /**
      * Envia LOTE de RPS para emissão de NFSe (ASSINCRONO)
@@ -243,62 +264,50 @@ class Tools extends BaseTools
      */
     public function recepcionarLoteRps($arps, $lote)
     {
-        $operation = 'RecepcionarLoteRps';
+        $xsd = "servico_enviar_lote_rps_envio.xsd";
+        $transforms = [
+            "http://www.w3.org/2000/09/xmldsig#enveloped-signature"
+        ];
+        $operation = 'EnviarLoteRps';
         $no_of_rps_in_lot = count($arps);
         if ($no_of_rps_in_lot > 50) {
             throw new \Exception('O limite é de 50 RPS por lote enviado.');
         }
-        $content = '';
+        $rpstxt = '';
         foreach ($arps as $rps) {
-            $xml = $this->putPrestadorInRps($rps);
-            $xmlsigned = $this->sign($xml, 'InfRps', 'Id');
-            $content .= $xmlsigned;
+            $rps->config($this->config);
+            $rpstxt .= $rps->render();
         }
-        $contentmsg = "<EnviarLoteRpsEnvio xmlns=\"{$this->wsobj->msgns}\">"
-            . "<LoteRps Id=\"$lote\" versao=\"{$this->wsobj->version}\">"
-            . "<NumeroLote>$lote</NumeroLote>"
-            . "<Cnpj>" . $this->config->cnpj . "</Cnpj>"
-            . "<InscricaoMunicipal>" . $this->config->im . "</InscricaoMunicipal>"
-            . "<QuantidadeRps>$no_of_rps_in_lot</QuantidadeRps>"
-            . "<ListaRps>"
-            . $content
-            . "</ListaRps>"
+                
+        $content = "<EnviarLoteRpsEnvio "
+            . "xmlns=\"{$this->wsobj->msgns}/{$xsd}\" "
+            . "xmlns:tc=\"{$this->tcnamespace}\">"
+            . "<LoteRps>"
+            . "<tc:NumeroLote>$lote</tc:NumeroLote>"
+            . "<tc:CpfCnpj>";
+        if (!empty($this->config->cnpj)) {
+            $content .= "<tc:Cnpj>{$this->config->cnpj}</tc:Cnpj>";
+        } else {
+            $content .= "<tc:Cpf>{$this->config->cpf}</tc:Cpf>";
+        }
+        $content .= "</tc:CpfCnpj>"
+            . "<tc:InscricaoMunicipal>{$this->config->im}</tc:InscricaoMunicipal>"
+            . "<tc:QuantidadeRps>$no_of_rps_in_lot</tc:QuantidadeRps>"
+            . "<tc:ListaRps>"
+            . $rpstxt
+            . "</tc:ListaRps>"
             . "</LoteRps>"
             . "</EnviarLoteRpsEnvio>";
-        
-        $content = $this->sign($contentmsg, 'LoteRps', 'Id');
-        Validator::isValid($content, $this->xsdpath);
+        $content = $this->canonize($content);
+        //header("Content-type: text/xml");
+        //echo $content;
+        //die;
+            
+        $content = $this->sign($content, 'LoteRps', '', $transforms);
+        //Validator::isValid($content, "$this->xsdpath/{$xsd}");
         return $this->send($content, $operation);
     }
     
-    /**
-     * Solicita a emissão de uma NFSe de forma SINCRONA
-     * @param RpsInterface $rps
-     * @param string $lote Identificação do lote
-     * @return string
-     */
-    public function gerarNfse(RpsInterface $rps, $lote)
-    {
-        $operation = "GerarNfse";
-        
-        $xmlsigned = $this->putPrestadorInRps($rps);
-        $xmlsigned = $this->sign($xmlsigned, 'InfRps', 'Id');
-        
-        $contentmsg = "<GerarNfseEnvio xmlns=\"{$this->wsobj->msgns}\">"
-            . "<LoteRps Id=\"Lote$lote\" versao=\"{$this->wsobj->version}\">"
-            . "<NumeroLote>$lote</NumeroLote>"
-            . "<Cnpj>" . $this->config->cnpj . "</Cnpj>"
-            . "<InscricaoMunicipal>" . $this->config->im . "</InscricaoMunicipal>"
-            . "<QuantidadeRps>1</QuantidadeRps>"
-            . "<ListaRps>"
-            . $xmlsigned
-            . "</ListaRps>"
-            . "</LoteRps>"
-            . "</GerarNfseEnvio>";
-        $content = $this->sign($contentmsg, 'LoteRps', 'Id');
-        Validator::isValid($content, $this->xsdpath);
-        return $this->send($content, $operation);
-    }
     
     protected function canonize($content)
     {
