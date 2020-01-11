@@ -30,13 +30,16 @@ try {
     $tools = new Tools($configJson, $cert);
     $tools->loadSoapClass($soap);
 
-    $dini = '2018-01-01'; //obrigatório
-    $dfim = '2018-10-31'; //obrigatório
-    $tomadorCnpj = '12345678901234'; //opcional
-    $tomadorCpf = null; //opcional
-    $tomadorIM = null; //opcional
+    $params = new \stdClass();
+    $params->dini = '2019-12-01'; //optional
+    $params->dfim = '2019-12-31'; //optional
+    $params->numero = 20; //optional
+    //$params->tomador = new \stdClass(); //optional
+    //$params->tomador->cnpj = '12345678901234'; //optional
+    //$params->tomador->cpf = null; //optional
+    //$params->tomador->im= null; //optional
     
-    $response = $tools->consultarNfse($dini, $dfim, $tomadorCnpj, $tomadorCpf, $tomadorIM);
+    $response = $tools->consultarNfse($params);
     
     echo FakePretty::prettyPrint($response, '');
  

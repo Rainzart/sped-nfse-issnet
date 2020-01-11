@@ -171,38 +171,37 @@ class Tools extends BaseTools
     
     /**
      * Consulta NFSe emitidas em um periodo e por tomador (SINCRONO)
-     * @param string $dini
-     * @param string $dfim
-     * @param string $tomadorCnpj
-     * @param string $tomadorCpf
-     * @param string $tomadorIM
+     * @param parameters \stdClass
      * @return string
      */
-    public function consultarNfse($dini, $dfim, $tomadorCnpj = null, $tomadorCpf = null, $tomadorIM = null)
+    public function consultarNfse($parameters)
     {
         $xsd = "servico_consultar_nfse_envio.xsd";
         $operation = 'ConsultarNfse';
         $content = "<ConsultarNfseEnvio "
             . "xmlns=\"{$this->wsobj->msgns}/{$xsd}\" "
-            . "xmlns:tc=\"{$this->tcnamespace}\" "
-            . "xmlns:ts=\"{$this->tsnamespace}\">"
-            . $this->prestador
-            . "<PeriodoEmissao>"
-            . "<DataInicial>$dini</DataInicial>"
-            . "<DataFinal>$dfim</DataFinal>"
+            . "xmlns:tc=\"{$this->tcnamespace}\">"
+            . $this->prestador;
+        if (isset($parameters->dini)) {
+            $content .= "<PeriodoEmissao>"
+            . "<DataInicial>{$parameters->dini}</DataInicial>"
+            . "<DataFinal>{$parameters->dfim}</DataFinal>"
             . "</PeriodoEmissao>";
-            
-        if ($tomadorCnpj || $tomadorCpf) {
+        }
+        if (isset($parameters->numero)) {
+            $content .= "<NumeroNfse>{$parameters->numero}</NumeroNfse>";
+        }
+        if (isset($parameters->tomador->cnpj) || isset($parameters->tomador->cpf)) {
             $content .= "<Tomador>"
             . "<tc:CpfCnpj>";
-            if (isset($tomadorCnpj)) {
-                $content .= "<tc:Cnpj>$tomadorCnpj</tc:Cnpj>";
+            if (isset($parameters->tomador->cnpj)) {
+                $content .= "<tc:Cnpj>{$parameters->tomador->cnpj}</tc:Cnpj>";
             } else {
-                $content .= "<tc:Cpf>$tomadorCpf</tc:Cpf>";
+                $content .= "<tc:Cpf>{$parameters->tomador->cpf}</tc:Cpf>";
             }
             $content .= "</tc:CpfCnpj>";
-            if (isset($tomadorIM)) {
-                $content .= "<tc:InscricaoMunicipal>$tomadorIM</tc:InscricaoMunicipal>";
+            if (isset($parameters->tomador->im)) {
+                $content .= "<tc:InscricaoMunicipal>{$parameters->tomador->im}</tc:InscricaoMunicipal>";
             }
             $content .= "</Tomador>";
         }

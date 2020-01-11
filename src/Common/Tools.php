@@ -141,7 +141,9 @@ class Tools
             $this->soap = new SoapCurl($this->certificate);
         }
         $msgSize = strlen($request);
+
         $parameters = [
+            "Accept-Encoding: gzip, deflate",
             "Content-Type: text/xml;charset=UTF-8",
             "SOAPAction: \"$action\"",
             "Content-length: $msgSize"
@@ -163,14 +165,14 @@ class Tools
      */
     protected function extractContentFromResponse($response, $operation)
     {
-        //$dom = new Dom('1.0', 'UTF-8');
-        //$dom->preserveWhiteSpace = false;
-        //$dom->formatOutput = false;
-        //$dom->loadXML($response);
-        //if (!empty($dom->getElementsByTagName('outputXML')->item(0))) {
-        //  $node = $dom->getElementsByTagName('outputXML')->item(0);
-        //    return $node->textContent;
-        //}
+        $dom = new Dom('1.0', 'UTF-8');
+        $dom->preserveWhiteSpace = false;
+        $dom->formatOutput = false;
+        $dom->loadXML($response);
+        if (!empty($dom->getElementsByTagName("{$operation}Result")->item(0))) {
+            $node = $dom->getElementsByTagName("{$operation}Result")->item(0);
+            return $node->textContent;
+        }
         return $response;
     }
 
@@ -182,23 +184,18 @@ class Tools
      */
     protected function createSoapRequest($message, $operation)
     {
-      
-        $env = "<soap:Envelope "
-            . "xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope\" "
-            . "xmlns:nfd=\"{$this->wsobj->soapns}\">"
-            . "<soap:Header/>"
+        $cdata = htmlspecialchars("<?xml version=\"1.0\" encoding=\"UTF-8\"?>".$message, ENT_NOQUOTES);
+        $env = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><soap:Envelope "
+            . "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" "
+            . "xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" "
+            . "xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">"
             . "<soap:Body>"
-            . "<nfd:{$operation}>"
-            . "<nfd:xml>{$message}</nfd:xml>"
-            . "</nfd:{$operation}>"
+            . "<$operation xmlns=\"{$this->wsobj->soapns}\">"
+            . "<xml>{$cdata}</xml>"
+            . "</$operation>"
             . "</soap:Body>"
             . "</soap:Envelope>";
-            
-        $dom = new Dom('1.0', 'UTF-8');
-        $dom->preserveWhiteSpace = false;
-        $dom->formatOutput = false;
-        $dom->loadXML($env);
-        return $dom->saveXML($dom->documentElement);
+        return $env;
     }
 
     /**
