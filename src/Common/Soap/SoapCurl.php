@@ -53,7 +53,6 @@ class SoapCurl extends SoapBase implements SoapInterface
         $response = '';
         $this->requestHead = implode("\n", $parameters);
         $this->requestBody = $envelope;
-        
         try {
             $this->saveTemporarilyKeyFiles();
             $oCurl = curl_init();
@@ -65,6 +64,7 @@ class SoapCurl extends SoapBase implements SoapInterface
             curl_setopt($oCurl, CURLOPT_HEADER, 1);
             curl_setopt($oCurl, CURLOPT_SSL_VERIFYHOST, 0);
             curl_setopt($oCurl, CURLOPT_SSL_VERIFYPEER, 0);
+            curl_setopt($oCurl, CURLOPT_ENCODING, ''); //converte o encoding no retorno
             if (!$this->disablesec) {
                 curl_setopt($oCurl, CURLOPT_SSL_VERIFYHOST, 2);
                 if (is_file($this->casefaz)) {

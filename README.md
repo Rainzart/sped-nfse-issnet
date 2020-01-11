@@ -54,7 +54,7 @@ API para integraçao para geração de NFSe (Prefeituras) com o modelo ISS.NET
 ## Contribuindo
 Este é um projeto totalmente *OpenSource*, para usa-lo e modifica-lo você não paga absolutamente nada. Porém para continuarmos a mante-lo é necessário qua alguma contribuição seja feita, seja auxiliando na codificação, na documentação ou na realização de testes e identificação de falhas e BUGs.
 
-**Este pacote ainda não esta listado no [Packgist](https://packagist.org/)**
+**Este pacote está listado no [Packgist](https://packagist.org/)**
 
 *Durante a fase de desenvolvimento e testes este pacote deve ser instalado com:*
 ```bash
