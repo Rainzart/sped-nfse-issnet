@@ -18,20 +18,52 @@ API para integraçao para geração de NFSe (Prefeituras) com o modelo ISS.NET
 
 # EM DESENVONVIMENTO NÃO FUNCIONAL
 
-## Prefeituras (até o momento localidas 12 prefeituras usando esse modelo) 
+## Municípios atendidos por esse provedor
 
-- Anapolis (GO)
-- Barcarena (PA)
-- Cascavel (PR)
-- Barra MAnsa (RJ)
-- Dique de Caxias (RJ)
-- Itatiaia (RJ)
-- Lorena (SP)
-- Praia Grande (SP)
-- São Vicente (SP)
-- Jacarei (SP)
-- Novo Hamburgo (RS)
-- Santa Maria (RS)
+|n|Município|UF|IBGE|
+|:---:|:---|:---:|:---:|
+|1|Anapolis|GO|5201108|
+|2|Aparecida de Goiania|GO|5201405|
+|3|Mantena|MG|3139607|
+|4|Anastacio|MS|5000708|
+|5|Aquidauana|MS|5001102|
+|6|Bonito|MS|5002209|
+|7|Caarapo|MS|5002407|
+|8|Dourados|MS|5003702|
+|9|Iguatemi|MS|5004304|
+|10|Inocencio|MS|5004403|
+|11|Ivinhema|MS|5004700|
+|12|Jardim|MS|5005004|
+|13|Miranda|MS|5005608|
+|14|Navirai|MS|5005707|
+|15|Nova Alvorada do Sul|MS|5006002|
+|16|Paranaiba|MS|5006309|
+|17|Ponta Pora|MS|5006606|
+|18|Ribas do Rio Pardo|MS|5007109|
+|19|Rio Brilhante|MS|5007208|
+|20|Sao Gabriel do Oeste|MS|5007695|
+|21|Selviria|MS|5007802|
+|22|Sidrolandia|MS|5007901|
+|23|Alta Floresta|MT|5100250|
+|24|Cuiaba|MT|5103403|
+|25|Juara|MT|5105101|
+|26|Paranatinga|MT|5106307|
+|27|Barcarena|PA|1501303|
+|28|Cascavel|PR|4104808|
+|29|Barra Mansa|RJ|3300407|
+|30|Duque de Caxias|RJ|3301702|
+|31|Itatiaia|RJ|3302254|
+|32|Cruz Alta|RS|4306106|
+|33|Novo Hamburgo|RS|4313409|
+|34|Santa Maria|RS|4316907|
+|35|Andradina|SP|3502101|
+|36|Birigui|SP|3506508|
+|37|Lorena|SP|3527207|
+|38|Jacarei|SP|3524402|
+|39|Praia Grande|SP|3541000|
+|40|Sao Vicente|SP|3551009|
+|41|Serrana|SP|3551504|
+
 
 ## Dependências
 
