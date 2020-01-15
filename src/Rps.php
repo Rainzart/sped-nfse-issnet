@@ -74,6 +74,9 @@ class Rps implements RpsInterface
     {
         if (!empty($rps)) {
             $this->std = $this->propertiesToLower($rps);
+            if (empty($rps->version)) {
+                $rps->version = '1.00';
+            }
             $ver = str_replace('.', '_', $rps->version);
             $this->jsonschema = realpath("../storage/jsonSchemes/v$ver/rps.schema");
             $this->validInputData($this->std);
