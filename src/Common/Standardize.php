@@ -48,8 +48,6 @@ class Standardize
         'ConsultarNfseFaixaResposta',
         'ConsultarNfseRpsResposta',
         'EnviarLoteRpsResposta',
-        'GerarNfseEnvio',
-        'GerarNfseResposta',
         'RPS'
     ];
     

@@ -51,8 +51,8 @@ $jsonSchema = '{
             "pattern": "^[1-6]{1}"
         },
         "regimeespecialtributacao": {
-            "required": true,
-            "type": "integer",
+            "required": false,
+            "type": ["integer","null"],
             "pattern": "^[1-6]{1}"
         },
         "optantesimplesnacional": {
@@ -126,7 +126,7 @@ $jsonSchema = '{
                         },
                         "codigomunicipio": {
                             "required": true,
-                            "type": "integer",
+                            "type": "string",
                             "pattern": "^[0-9]{7}"
                         },
                         "uf": {
@@ -136,7 +136,7 @@ $jsonSchema = '{
                         },
                         "cep": {
                             "required": true,
-                            "type": "integer",
+                            "type": "string",
                             "pattern": "^[0-9]{8}"
                         }
                     }
@@ -172,7 +172,7 @@ $jsonSchema = '{
                 },
                 "codigomunicipio": {
                     "required": true,
-                    "type": "integer",
+                    "type": "string",
                     "pattern": "^[0-9]{7}"
                 },
                 "valores": {
@@ -213,6 +213,14 @@ $jsonSchema = '{
                             "pattern": "^[1-2]{1}"
                         },
                         "valoriss": {
+                            "required": false,
+                            "type": ["number", "null"]
+                        },
+                        "basecalculo": {
+                            "required": false,
+                            "type": ["number", "null"]
+                        },
+                        "valorliquidonfse": {
                             "required": false,
                             "type": ["number", "null"]
                         },
@@ -314,6 +322,7 @@ $std->status = 1;  // 1 – Normal  2 – Cancelado
 $std->tomador = new \stdClass();
 $std->tomador->cnpj = "99999999000191";
 $std->tomador->cpf = "12345678901";
+$std->tomador->inscricaomunicipal = "3515100";
 $std->tomador->razaosocial = "Fulano de Tal";
 
 $std->tomador->endereco = new \stdClass();
@@ -321,16 +330,16 @@ $std->tomador->endereco->endereco = 'Rua das Rosas';
 $std->tomador->endereco->numero = '111';
 $std->tomador->endereco->complemento = 'Sobre Loja';
 $std->tomador->endereco->bairro = 'Centro';
-$std->tomador->endereco->codigomunicipio = 3106200;
+$std->tomador->endereco->codigomunicipio = '3106200';
 $std->tomador->endereco->uf = 'MG';
-$std->tomador->endereco->cep = 30160010;
+$std->tomador->endereco->cep = '30160010';
 
 $std->servico = new \stdClass();
 $std->servico->itemlistaservico = '11.01';
 $std->servico->codigocnae = '7320300';
 $std->servico->codigotributacaomunicipio = '522310000';
 $std->servico->discriminacao = 'Teste de RPS';
-$std->servico->codigomunicipio = 3106200;
+$std->servico->codigomunicipio = '3106200';
 
 $std->servico->valores = new \stdClass();
 $std->servico->valores->valorservicos = 100.00;
@@ -342,6 +351,8 @@ $std->servico->valores->valorir = 10.00;
 $std->servico->valores->valorcsll = 10.00;
 $std->servico->valores->issretido = 1;
 $std->servico->valores->valoriss = 10.00;
+$std->servico->valores->basecalculo = 10.00;
+$std->servico->valores->valorliquidonfse = 10.00;
 $std->servico->valores->outrasretencoes = 10.00;
 $std->servico->valores->aliquota = 5;
 $std->servico->valores->descontoincondicionado = 10.00;

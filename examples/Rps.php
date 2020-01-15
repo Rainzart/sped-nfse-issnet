@@ -10,8 +10,8 @@ $std->version = '1.00'; //indica qual JsonSchema USAR na validação
 $std->IdentificacaoRps = new \stdClass();
 $std->IdentificacaoRps->Numero = 11; //limite 15 digitos
 $std->IdentificacaoRps->Serie = '1';
-$std->IdentificacaoRps->Tipo = 1; //1 - RPS 2-Nota Fiscal Conjugada (Mista) 3-Cupom
-$std->DataEmissao = '2018-10-31T12:33:22';
+$std->IdentificacaoRps->Tipo = 1; //1-RPS 2-Nota Fiscal Conjugada (Mista) 3-Cupom
+$std->DataEmissao = '2020-01-12T09:55:22';
 $std->NaturezaOperacao = 1; // 1 – Tributação no município
                             // 2 - Tributação fora do município
                             // 3 - Isenção
@@ -32,39 +32,42 @@ $std->Status = 1;  // 1 – Normal  2 – Cancelado
 
 $std->Tomador = new \stdClass();
 $std->Tomador->Cnpj = "99999999000191";
-$std->Tomador->Cpf = "12345678901";
+$std->Tomador->Cpf = null;
+$std->Tomador->InscricaoMunicipal = "3515100";
 $std->Tomador->RazaoSocial = "Fulano de Tal";
 
 $std->Tomador->Endereco = new \stdClass();
-$std->Tomador->Endereco->Endereco = 'Rua das Rosas';
+$std->Tomador->Endereco->Endereco = 'Rua Sibipiruna';
 $std->Tomador->Endereco->Numero = '111';
 $std->Tomador->Endereco->Complemento = 'Sobre Loja';
 $std->Tomador->Endereco->Bairro = 'Centro';
-$std->Tomador->Endereco->CodigoMunicipio = 3106200;
-$std->Tomador->Endereco->Uf = 'MG';
-$std->Tomador->Endereco->Cep = 30160010;
+$std->Tomador->Endereco->CodigoMunicipio = '4104808';
+$std->Tomador->Endereco->Uf = 'PR';
+$std->Tomador->Endereco->Cep = '85807210';
 
 $std->Servico = new \stdClass();
-$std->Servico->ItemListaServico = '11.01';
-$std->Servico->CodigoCnae = '7320300';
-$std->Servico->CodigoTributacaoMunicipio = '522310000';
+$std->Servico->ItemListaServico = '105';
+$std->Servico->CodigoCnae = '6202300';
+$std->Servico->CodigoTributacaoMunicipio = '10500';
 $std->Servico->Discriminacao = 'Teste de RPS';
-$std->Servico->CodigoMunicipio = 3106200;
+$std->Servico->CodigoMunicipio = '4104808';
 
 $std->Servico->Valores = new \stdClass();
-$std->Servico->Valores->ValorServicos = 100.00;
-$std->Servico->Valores->ValorDeducoes = 10.00;
-$std->Servico->Valores->ValorPis = 10.00;
-$std->Servico->Valores->ValorCofins = 10.00;
-$std->Servico->Valores->ValorInss = 10.00;
-$std->Servico->Valores->ValorIr = 10.00;
-$std->Servico->Valores->ValorCsll = 10.00;
-$std->Servico->Valores->IssRetido = 1;
-$std->Servico->Valores->ValorIss = 10.00;
-$std->Servico->Valores->OutrasRetencoes = 10.00;
+$std->Servico->Valores->ValorServicos = 10.00;
+$std->Servico->Valores->ValorDeducoes = 0.00;
+$std->Servico->Valores->ValorPis = 0.00;
+$std->Servico->Valores->ValorCofins = 0.00;
+$std->Servico->Valores->ValorInss = 0.00;
+$std->Servico->Valores->ValorIr = 0.00;
+$std->Servico->Valores->ValorCsll = 0.00;
+$std->Servico->Valores->IssRetido = 2;
+$std->Servico->Valores->ValorIss = 0.50;
+$std->Servico->Valores->BaseCalculo = 10.00;
+$std->Servico->Valores->ValorLiquidoNFSe = 10.00;
+$std->Servico->Valores->OutrasRetencoes = 0.00;
 $std->Servico->Valores->Aliquota = 5;
-$std->Servico->Valores->DescontoIncondicionado = 10.00;
-$std->Servico->Valores->DescontoCondicionado = 10.00;
+$std->Servico->Valores->DescontoIncondicionado = 0.00;
+$std->Servico->Valores->DescontoCondicionado = 0.00;
 
 /*
 $std->IntermediarioServico = new \stdClass();

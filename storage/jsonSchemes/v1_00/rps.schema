@@ -39,8 +39,8 @@
             "pattern": "^[1-6]{1}"
         },
         "regimeespecialtributacao": {
-            "required": true,
-            "type": "integer",
+            "required": false,
+            "type": ["integer","null"],
             "pattern": "^[1-6]{1}"
         },
         "optantesimplesnacional": {
@@ -114,7 +114,7 @@
                         },
                         "codigomunicipio": {
                             "required": true,
-                            "type": "integer",
+                            "type": "string",
                             "pattern": "^[0-9]{7}"
                         },
                         "uf": {
@@ -124,7 +124,7 @@
                         },
                         "cep": {
                             "required": true,
-                            "type": "integer",
+                            "type": "string",
                             "pattern": "^[0-9]{8}"
                         }
                     }
@@ -160,7 +160,7 @@
                 },
                 "codigomunicipio": {
                     "required": true,
-                    "type": "integer",
+                    "type": "string",
                     "pattern": "^[0-9]{7}"
                 },
                 "valores": {
@@ -201,6 +201,14 @@
                             "pattern": "^[1-2]{1}"
                         },
                         "valoriss": {
+                            "required": false,
+                            "type": ["number", "null"]
+                        },
+                        "basecalculo": {
+                            "required": false,
+                            "type": ["number", "null"]
+                        },
+                        "valorliquidonfse": {
                             "required": false,
                             "type": ["number", "null"]
                         },

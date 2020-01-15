@@ -103,8 +103,8 @@ class Factory
         $this->dom->addChild(
             $infRps,
             "tc:RegimeEspecialTributacao",
-            $this->std->regimeespecialtributacao,
-            true
+            isset($this->std->regimeespecialtributacao) ? $this->std->regimeespecialtributacao : null,
+            false
         );
         
         $this->addServico($infRps);
@@ -123,7 +123,7 @@ class Factory
         if (!isset($this->config)) {
             return;
         }
-        $node = $this->dom->createElement('Prestador');
+        $node = $this->dom->createElement('tc:Prestador');
         $cpfcnpj = $this->dom->createElement('tc:CpfCnpj');
         $this->dom->addChild(
             $cpfcnpj,
@@ -251,15 +251,7 @@ class Factory
             $valnode,
             "tc:ValorIss",
             isset($val->valoriss)
-                ? number_format($val->valoriss, 2, '.', '')
-                : null,
-            false
-        );
-        $this->dom->addChild(
-            $valnode,
-            "tc:OutrasRetencoes",
-            isset($val->outrasretencoes)
-                ? number_format($val->outrasretencoes, 2, '.', '')
+                ? number_format($val->valoriss, 4, '.', '')
                 : null,
             false
         );
@@ -268,6 +260,14 @@ class Factory
             "tc:BaseCalculo",
             isset($val->basecalculo)
                 ? number_format($val->basecalculo, 2, '.', '')
+                : null,
+            false
+        );
+        $this->dom->addChild(
+            $valnode,
+            "tc:OutrasRetencoes",
+            isset($val->outrasretencoes)
+                ? number_format($val->outrasretencoes, 2, '.', '')
                 : null,
             false
         );
@@ -303,6 +303,7 @@ class Factory
                 : null,
             false
         );
+        /*
         $this->dom->addChild(
             $valnode,
             "tc:ValorDeducoes",
@@ -311,6 +312,8 @@ class Factory
                 : null,
             false
         );
+         * 
+         */
         $node->appendChild($valnode);
         
         $this->dom->addChild(
