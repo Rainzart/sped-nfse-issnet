@@ -30,10 +30,12 @@ try {
     $tools = new Tools($configJson, $cert);
     $tools->loadSoapClass($soap);
 
-    $numero = 3;
-    $codigo_tributacao = '10500';
-
-    $response = $tools->consultarVisualizacaoNfse($numero, $codigo_tributacao);
+    $params = new \stdClass();
+    $params->numero = 210;
+    $params->serie = '1';
+    $params->tipo = 1;
+    
+    $response = $tools->consultarNfseRps($params);
     
     echo FakePretty::prettyPrint($response, '');
  

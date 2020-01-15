@@ -140,7 +140,7 @@ class Tools extends BaseTools
             . $this->prestador
             . "</ConsultarDadosCadastraisEnvio>";
             
-        //$content = $this->sign($content, 'ConsultarDadosCadastraisEnvio', '', $transforms);
+        $content = $this->sign($content, 'ConsultarDadosCadastraisEnvio', '', $transforms);
         //Validator::isValid($content, "$this->xsdpath/{$xsd}");
         return $this->send($content, $operation);
     }
@@ -211,6 +211,30 @@ class Tools extends BaseTools
     }
     
     /**
+     * Consulta NFSe emitidas por RPS
+     * @param parameters \stdClass
+     * @return string
+     */
+    public function consultarNfseRps($parameters)
+    {
+        $xsd = "servico_consultar_nfse_rps_envio.xsd";
+        $operation = 'ConsultarNFSePorRPS';
+        $content = "<ConsultarNfseRpsEnvio "
+            . "xmlns=\"{$this->wsobj->msgns}/{$xsd}\" "
+            . "xmlns:tc=\"{$this->tcnamespace}\" "
+            . "xmlns:ts=\"{$this->tsnamespace}\">"
+            . "<IdentificacaoRps>"
+            . "<tc:Numero>{$parameters->numero}</tc:Numero>"
+            . "<tc:Serie>{$parameters->serie}</tc:Serie>"
+            . "<tc:Tipo>{$parameters->tipo}</tc:Tipo>"
+            . "</IdentificacaoRps>"
+            . $this->prestador
+            . "</ConsultarNfseRpsEnvio>";
+        Validator::isValid($content, "$this->xsdpath/{$xsd}");
+        return $this->send($content, $operation);
+    }
+    
+    /**
      * Consulta
      * @param integer $numero
      * @param integer $codigo_tributacao
@@ -267,7 +291,7 @@ class Tools extends BaseTools
         $transforms = [
             "http://www.w3.org/2000/09/xmldsig#enveloped-signature"
         ];
-        $operation = 'EnviarLoteRps';
+        $operation = 'RecepcionarLoteRps';
         $no_of_rps_in_lot = count($arps);
         if ($no_of_rps_in_lot > 50) {
             throw new \Exception('O limite é de 50 RPS por lote enviado.');
@@ -298,12 +322,13 @@ class Tools extends BaseTools
             . "</LoteRps>"
             . "</EnviarLoteRpsEnvio>";
         $content = $this->canonize($content);
+        
+            
+        $content = $this->sign($content, 'LoteRps', '', $transforms);
+        Validator::isValid($content, "$this->xsdpath/{$xsd}");
         //header("Content-type: text/xml");
         //echo $content;
         //die;
-            
-        $content = $this->sign($content, 'LoteRps', '', $transforms);
-        //Validator::isValid($content, "$this->xsdpath/{$xsd}");
         return $this->send($content, $operation);
     }
     
