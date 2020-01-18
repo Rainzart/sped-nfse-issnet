@@ -34,7 +34,9 @@ class Factory
      * @var DOMNode
      */
     protected $rps;
-    
+    /**
+     * @var \stdClass
+     */
     protected $config;
 
     /**
@@ -54,6 +56,10 @@ class Factory
         $this->rps->setAttribute('xmlns:tc', $tcnamespace);
     }
     
+    /**
+     * Add config
+     * @param \stdClass $config
+     */
     public function addConfig($config)
     {
         $this->config = $config;
