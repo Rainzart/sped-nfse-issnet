@@ -34,7 +34,9 @@ class Rps implements RpsInterface
      * @var string
      */
     protected $jsonschema;
-    
+    /**
+     * @var \stdClass
+     */
     protected $config;
 
 
@@ -47,11 +49,14 @@ class Rps implements RpsInterface
         $this->init($rps);
     }
     
-    public function config($config)
+    /**
+     * Add config
+     * @param stdClass $config
+     */
+    public function config(\stdClass $config)
     {
         $this->config = $config;
     }
-        
     
     /**
      * {@inheritdoc}

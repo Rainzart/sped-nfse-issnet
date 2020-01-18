@@ -15,7 +15,6 @@ namespace NFePHP\NFSeIssNet\Common;
  * @author    Roberto L. Machado <linux.rlm at gmail dot com>
  * @link      http://github.com/nfephp-org/sped-nfse-nacional for the canonical source repository
  */
-
 use DOMDocument;
 use stdClass;
 use InvalidArgumentException;
@@ -23,14 +22,17 @@ use NFePHP\Common\Validator;
 
 class Standardize
 {
+
     /**
      * @var string
      */
     public $node = '';
+
     /**
      * @var string
      */
     public $json = '';
+
     /**
      * @var array
      */
@@ -50,12 +52,12 @@ class Standardize
         'EnviarLoteRpsResposta',
         'RPS'
     ];
-    
+
     public function __construct($xml = null)
     {
         $this->toStd($xml);
     }
-    
+
     /**
      * Identify node and extract from XML for convertion type
      * @param string $xml
@@ -70,15 +72,12 @@ class Standardize
             );
         }
         $xml = $this->removeNS($xml);
-        
         $dom = new \DOMDocument('1.0', 'UTF-8');
         $dom->preserveWhiteSpace = false;
         $dom->formatOutput = false;
         $dom->loadXML($xml);
         foreach ($this->rootTagList as $key) {
-            $node = !empty($dom->getElementsByTagName($key)->item(0))
-                ? $dom->getElementsByTagName($key)->item(0)
-                : '';
+            $node = !empty($dom->getElementsByTagName($key)->item(0)) ? $dom->getElementsByTagName($key)->item(0) : '';
             if (!empty($node)) {
                 $this->node = $dom->saveXML();
                 return $key;
@@ -88,7 +87,7 @@ class Standardize
             "Este xml não pertence ao projeto NFSe Nacional."
         );
     }
-    
+
     /**
      * Returns extract node from XML
      * @return string
@@ -97,7 +96,7 @@ class Standardize
     {
         return $this->node;
     }
-    
+
     /**
      * Returns stdClass converted from xml
      * @param string $xml
@@ -108,7 +107,7 @@ class Standardize
         if (!empty($xml)) {
             $this->whichIs($xml);
         }
-        
+
         $sxml = simplexml_load_string($this->node);
         $this->json = str_replace(
             '@attributes',
@@ -117,7 +116,7 @@ class Standardize
         );
         return json_decode($this->json);
     }
-    
+
     /**
      * Remove all namespaces from XML
      * @param string $xml
@@ -134,9 +133,14 @@ class Standardize
         foreach ($sxe->getDocNamespaces() as $name => $uri) {
             $element->removeAttributeNS($uri, $name);
         }
-        return $dom->saveXML();
+        $xml =$dom->saveXML();
+        if (stripos($xml, 'xmlns=') !== false) {
+            $xml = preg_replace('~[\s]+xmlns=[\'"].+?[\'"]~i', null, $xml);
+            $xml = str_replace('default:', '', $xml);
+            $xml = preg_replace('~[\s]+xmlns:default=[\'"].+?[\'"]~i', null, $xml);
+        }
+        return $xml;
     }
-
 
     /**
      * Retruns JSON string form XML
@@ -150,7 +154,7 @@ class Standardize
         }
         return $this->json;
     }
-    
+
     /**
      * Returns array from XML
      * @param string $xml
