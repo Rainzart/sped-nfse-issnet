@@ -60,9 +60,7 @@ class Tools extends BaseTools
      */
     public function cancelarNfse($numero, $codigo, $motivo = null)
     {
-        
         //devido a falhas no xsd não permitir justificativa
-        $motivo = null;
         $transforms = ["http://www.w3.org/2000/09/xmldsig#enveloped-signature"];
         $xsd = "servico_cancelar_nfse_envio.xsd";
         $operation = 'CancelarNfse';
