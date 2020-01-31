@@ -133,7 +133,7 @@ class Standardize
         foreach ($sxe->getDocNamespaces() as $name => $uri) {
             $element->removeAttributeNS($uri, $name);
         }
-        $xml =$dom->saveXML();
+        $xml = $dom->saveXML();
         if (stripos($xml, 'xmlns=') !== false) {
             $xml = preg_replace('~[\s]+xmlns=[\'"].+?[\'"]~i', null, $xml);
             $xml = str_replace('default:', '', $xml);

@@ -90,6 +90,12 @@ class Factory
         );
         $this->dom->addChild(
             $infRps,
+            "tc:RegimeEspecialTributacao",
+            isset($this->std->regimeespecialtributacao) ? $this->std->regimeespecialtributacao : null,
+            false
+        );
+        $this->dom->addChild(
+            $infRps,
             "tc:OptanteSimplesNacional",
             $this->std->optantesimplesnacional,
             true
@@ -106,13 +112,28 @@ class Factory
             $this->std->status,
             true
         );
-        $this->dom->addChild(
-            $infRps,
-            "tc:RegimeEspecialTributacao",
-            isset($this->std->regimeespecialtributacao) ? $this->std->regimeespecialtributacao : null,
-            false
-        );
-        
+        if (!empty($this->std->rpssubstituido)) {
+            $rpss = $this->dom->createElement('tc:RpsSubstituido');
+            $this->dom->addChild(
+                $rpss,
+                "tc:Numero",
+                $this->std->rpssubstituido->numero,
+                true
+            );
+            $this->dom->addChild(
+                $rpss,
+                "tc:Serie",
+                $this->std->rpssubstituido->serie,
+                true
+            );
+            $this->dom->addChild(
+                $rpss,
+                "tc:Tipo",
+                $this->std->rpssubstituido->tipo,
+                true
+            );
+            $infRps->appendChild($rpss);
+        }
         $this->addServico($infRps);
         $this->addPrestador($infRps);
         $this->addTomador($infRps);
@@ -309,17 +330,7 @@ class Factory
                 : null,
             false
         );
-        /*
-        $this->dom->addChild(
-            $valnode,
-            "tc:ValorDeducoes",
-            isset($val->valordeducoes)
-                ? number_format($val->valordeducoes, 2, '.', '')
-                : null,
-            false
-        );
-         * 
-         */
+
         $node->appendChild($valnode);
         
         $this->dom->addChild(
