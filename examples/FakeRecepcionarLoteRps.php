@@ -49,7 +49,7 @@ try {
     // 5 – Exigibilidade suspensa por decisão judicial
     // 6 – Exigibilidade suspensa por procedimento administrativo
 
-    //$std->RegimeEspecialTributacao = 1;
+    $std->RegimeEspecialTributacao = 1;
     // 1 – Microempresa municipal
     // 2 - Estimativa
     // 3 – Sociedade de profissionais
@@ -60,6 +60,11 @@ try {
     $std->OptanteSimplesNacional = 1; //1 - SIM 2 - Não
     $std->IncentivadorCultural = 2; //1 - SIM 2 - Não
     $std->Status = 1;  // 1 – Normal  2 – Cancelado
+    
+    $std->rpssubstituido = new \stdClass();
+    $std->rpssubstituido->numero = 12;
+    $std->rpssubstituido->serie = '1';
+    $std->rpssubstituido->tipo = 1;
 
     $std->Tomador = new \stdClass();
     $std->Tomador->Cnpj = "99999999000191";
@@ -94,23 +99,21 @@ try {
     $std->Servico->Valores->IssRetido = 2;
     $std->Servico->Valores->ValorIss = 0.50;
     $std->Servico->Valores->BaseCalculo = 10.00;
-    //$std->Servico->Valores->OutrasRetencoes = 0.00;
+    $std->Servico->Valores->OutrasRetencoes = 0.00;
     $std->Servico->Valores->Aliquota = 5;
     $std->Servico->Valores->ValorLiquidoNFSe = 10.00;
-    //$std->Servico->Valores->DescontoIncondicionado = 0.00;
-    //$std->Servico->Valores->DescontoCondicionado = 0.00;
+    $std->Servico->Valores->DescontoIncondicionado = 0.00;
+    $std->Servico->Valores->DescontoCondicionado = 0.00;
 
-    /*
-      $std->IntermediarioServico = new \stdClass();
-      $std->IntermediarioServico->RazaoSocial = 'INSCRICAO DE TESTE SIATU - D AGUA -PAULINO S';
-      $std->IntermediarioServico->Cnpj = '99999999000191';
-      $std->IntermediarioServico->InscricaoMunicipal = '8041700010';
+    $std->IntermediarioServico = new \stdClass();
+    $std->IntermediarioServico->RazaoSocial = 'INSCRICAO DE TESTE SIATU - D AGUA -PAULINO S';
+    $std->IntermediarioServico->Cnpj = '99999999000191';
+    $std->IntermediarioServico->InscricaoMunicipal = '8041700010';
 
-      $std->ConstrucaoCivil = new \stdClass();
-      $std->ConstrucaoCivil->CodigoObra = '1234';
-      $std->ConstrucaoCivil->Art = '1234';
-     */
-
+    //$std->ConstrucaoCivil = new \stdClass();
+    //$std->ConstrucaoCivil->CodigoObra = '1234';
+    //$std->ConstrucaoCivil->Art = '1234';
+    
     $arps[] = new Rps($std);
 
     $lote = '1';

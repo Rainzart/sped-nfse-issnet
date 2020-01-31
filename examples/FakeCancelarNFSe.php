@@ -32,10 +32,10 @@ try {
 
     
     $numero = 15;
-    $codigo = $tools::ERRO_PROCESSAMENTO; // 5 
-    $motivo = "Teste de cancelamento com justificativa";
+    $codigo = $tools::CANCEL_ERRO_EMISSAO; // 1 
+    //$motivo = null; // não utilizar devido a falha no XSD
     
-    $response = $tools->cancelarNfse($numero, $codigo, $motivo);
+    $response = $tools->cancelarNfse($numero, $codigo);
 
     echo FakePretty::prettyPrint($response, '');
  
