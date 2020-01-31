@@ -16,7 +16,14 @@ API para integraçao para geração de NFSe (Prefeituras) com o modelo ISS.NET
 [![Stars][ico-stars]][link-stars]
 
 
-# EM DESENVONVIMENTO NÃO FUNCIONAL
+# BETHA TESTS
+
+## Importante
+
+> O provedor ISS.NET não tem ambiente de homologação disponível livremente, para usar o ambiente de testes é necessário solicitar esse acesso pela NotaControl pelo email: atendimento@notacontrol.com.br.
+> Esse acesso ao ambiente de homologação é limitado a 50 RPS.
+
+> Já para acessar o ambiente de produção é necessário solicitar esse acesso a sua Prefeitura e irá passar os parâmetros de emissão.
 
 ## Municípios atendidos por esse provedor
 
