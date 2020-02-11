@@ -15,6 +15,7 @@ namespace NFePHP\NFSeIssNet\Common;
  * @author    Roberto L. Machado <linux.rlm at gmail dot com>
  * @link      http://github.com/nfephp-org/sped-nfse-nacional for the canonical source repository
  */
+
 use DOMDocument;
 use stdClass;
 use InvalidArgumentException;
@@ -133,7 +134,7 @@ class Standardize
         foreach ($sxe->getDocNamespaces() as $name => $uri) {
             $element->removeAttributeNS($uri, $name);
         }
-        $xml =$dom->saveXML();
+        $xml = $dom->saveXML();
         if (stripos($xml, 'xmlns=') !== false) {
             $xml = preg_replace('~[\s]+xmlns=[\'"].+?[\'"]~i', null, $xml);
             $xml = preg_replace('~[\s]+xmlns:default=[\'"].+?[\'"]~i', null, $xml);
