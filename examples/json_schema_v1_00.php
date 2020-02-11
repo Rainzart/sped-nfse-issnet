@@ -70,6 +70,28 @@ $jsonSchema = '{
             "type": "integer",
             "pattern": "^[1-2]{1}"
         },
+        "rpssubstituido": {
+            "required": false,
+            "type": ["object","null"],
+            "properties": {
+                "numero": {
+                    "required": true,
+                    "type": "integer",
+                    "pattern": "^[0-9]{1,15}"
+                },
+                "serie": {
+                    "required": true,
+                    "type": "string",
+                    "maxLength": 5,
+                    "pattern": "^[0-9A-Za-z]{1,5}$"
+                },
+                "tipo": {
+                    "required": true,
+                    "type": "integer",
+                    "pattern": "^[1-3]{1}"
+                }
+            }
+        },
         "tomador": {
             "required": true,
             "type": "object",
@@ -318,6 +340,11 @@ $std->regimeespecialtributacao = 1;    // 1 – Microempresa municipal
 $std->optantesimplesnacional = 1; //1 - SIM 2 - Não
 $std->incentivadorcultural = 2; //1 - SIM 2 - Não
 $std->status = 1;  // 1 – Normal  2 – Cancelado
+
+$std->rpssubstituido = new \stdClass();
+$std->rpssubstituido->numero = 12;
+$std->rpssubstituido->serie = '1';
+$std->rpssubstituido->tipo = 1;
 
 $std->tomador = new \stdClass();
 $std->tomador->cnpj = "99999999000191";

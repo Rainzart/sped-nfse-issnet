@@ -16,7 +16,17 @@ API para integraçao para geração de NFSe (Prefeituras) com o modelo ISS.NET
 [![Stars][ico-stars]][link-stars]
 
 
-# EM DESENVONVIMENTO NÃO FUNCIONAL
+# BETHA TESTS
+
+## Importante
+
+> O provedor ISS.NET não tem ambiente de homologação disponível livremente, para usar o ambiente de testes é necessário solicitar esse acesso pela NotaControl pelo email: atendimento@notacontrol.com.br. O suporte desse provedor NotaControl é pago, então não espere muita ajuda e/ou informações deles.
+> Esse acesso ao ambiente de homologação é limitado a 50 RPS.
+
+> Já para acessar o ambiente de produção é necessário solicitar esse acesso a sua Prefeitura que irá passar a você os parâmetros para a emissão dos RPS, como serie, faixa de numeros, codigos de serviço e etc.
+
+> Para o cancelamento de NFSe em Cascavel, impreterivelmente, o pedido deve ser justificado e informado o número da NF a qual substituiu ou substituirá a cancelada ou seja para cancelar uma nota no ISS.NET você precisa dizer e enviar qual é a numeração da NFSe (já autorizada) que vai substituir essa que quer cancelar. Deixando mais claro "NÃO EXISTE SIMPLES CANCELAMENTO". o cancelamento é sempre feito por substituição.
+
 
 ## Municípios atendidos por esse provedor
 

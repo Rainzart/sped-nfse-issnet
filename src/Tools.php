@@ -24,11 +24,9 @@ use NFePHP\NFSeIssNet\Common\Signer;
 class Tools extends BaseTools
 {
     
-    const ERRO_EMISSAO = 1; //Erro na emissão;
-    const SERVICO_NAO_PRESTADO = 2; //Serviço não prestado;
-    const ERRO_ASSINATURA = 3; //Erro de Assinatura;
-    const DULICIDADE = 4; //Duplicidade da Nota;
-    const ERRO_PROCESSAMENTO = 5; //Erro de processamento;
+    const CANCEL_ERRO_EMISSAO = 1; //Erro na emissão;
+    const CANCEL_SERVICO_NAO_PRESTADO = 2; //Serviço não prestado;
+    const CANCEL_DUPLICIDADE = 4; //Duplicidade da Nota;
     
     protected $tcnamespace = "http://www.issnetonline.com.br/webserviceabrasf/vsd/tipos_complexos.xsd";
     protected $tsnamespace = "http://www.issnetonline.com.br/webserviceabrasf/vsd/tipos_simples.xsd";
@@ -36,7 +34,11 @@ class Tools extends BaseTools
     protected $xsdpath;
     protected $cmun;
 
-
+    /**
+     * Constructor
+     * @param string $config
+     * @param Certificate $cert
+     */
     public function __construct($config, Certificate $cert)
     {
         parent::__construct($config, $cert);
@@ -55,10 +57,9 @@ class Tools extends BaseTools
      * Solicita o cancelamento de NFSe (SINCRONO)
      * @param integer $numero NFSe
      * @param integer $codigo codigo de cancelamento
-     * @param string $motivo
      * @return string
      */
-    public function cancelarNfse($numero, $codigo, $motivo = null)
+    public function cancelarNfse($numero, $codigo)
     {
         //devido a falhas no xsd não permitir justificativa
         $transforms = ["http://www.w3.org/2000/09/xmldsig#enveloped-signature"];
@@ -123,6 +124,10 @@ class Tools extends BaseTools
         return $this->send($content, $operation);
     }
 
+    /**
+     * Consultar dados cadastrais do emitente
+     * @return string
+     */
     public function consultarDadosCadastrais()
     {
         $xsd = "servico_consultar_dados_cadastrais_envio.xsd";
@@ -319,18 +324,18 @@ class Tools extends BaseTools
             . "</tc:ListaRps>"
             . "</LoteRps>"
             . "</EnviarLoteRpsEnvio>";
+
         $content = $this->canonize($content);
-        
-            
         $content = $this->sign($content, 'LoteRps', '', $transforms);
         Validator::isValid($content, "$this->xsdpath/{$xsd}");
-        //header("Content-type: text/xml");
-        //echo $content;
-        //die;
         return $this->send($content, $operation);
     }
     
-    
+    /**
+     * Canoniza mensagem
+     * @param string $content
+     * @return string
+     */
     protected function canonize($content)
     {
         $dom = new \DOMDocument('1.0', 'utf-8');
