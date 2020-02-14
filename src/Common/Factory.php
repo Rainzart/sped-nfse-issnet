@@ -278,7 +278,7 @@ class Factory
             $valnode,
             "tc:ValorIss",
             isset($val->valoriss)
-                ? number_format($val->valoriss, 4, '.', '')
+                ? number_format($val->valoriss, 2, '.', '')
                 : null,
             false
         );
