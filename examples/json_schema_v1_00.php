@@ -25,7 +25,7 @@ $jsonSchema = '{
                 "numero": {
                     "required": true,
                     "type": "integer",
-                    "pattern": "^[0-9]{1,15}"
+                    "pattern": "^[0-9]{1,15}$_POST"
                 },
                 "serie": {
                     "required": true,
@@ -36,7 +36,7 @@ $jsonSchema = '{
                 "tipo": {
                     "required": true,
                     "type": "integer",
-                    "pattern": "^[1-3]{1}"
+                    "pattern": "^[1-3]{1}$"
                 }
             }
         },
@@ -53,22 +53,22 @@ $jsonSchema = '{
         "regimeespecialtributacao": {
             "required": false,
             "type": ["integer","null"],
-            "pattern": "^[1-6]{1}"
+            "pattern": "^[1-6]{1}$"
         },
         "optantesimplesnacional": {
             "required": true,
             "type": "integer",
-            "pattern": "^[1-2]{1}"
+            "pattern": "^[1-2]{1}$"
         },
         "incentivadorcultural": {
             "required": true,
             "type": "integer",
-            "pattern": "^[1-2]{1}"
+            "pattern": "^[1-2]{1}$"
         },
         "status": {
             "required": true,
             "type": "integer",
-            "pattern": "^[1-2]{1}"
+            "pattern": "^[1-2]{1}$"
         },
         "rpssubstituido": {
             "required": false,
@@ -77,7 +77,7 @@ $jsonSchema = '{
                 "numero": {
                     "required": true,
                     "type": "integer",
-                    "pattern": "^[0-9]{1,15}"
+                    "pattern": "^[0-9]{1,15}$"
                 },
                 "serie": {
                     "required": true,
@@ -88,7 +88,7 @@ $jsonSchema = '{
                 "tipo": {
                     "required": true,
                     "type": "integer",
-                    "pattern": "^[1-3]{1}"
+                    "pattern": "^[1-3]{1}$"
                 }
             }
         },
@@ -99,12 +99,12 @@ $jsonSchema = '{
                 "cnpj": {
                     "required": false,
                     "type": ["string","null"],
-                    "pattern": "^[0-9]{14}"
+                    "pattern": "^[0-9]{14}$"
                 },
                 "cpf": {
                     "required": false,
                     "type": ["string","null"],
-                    "pattern": "^[0-9]{11}"
+                    "pattern": "^[0-9]{11}$"
                 },
                 "inscricaomunicipal": {
                     "required": false,
@@ -149,7 +149,7 @@ $jsonSchema = '{
                         "codigomunicipio": {
                             "required": true,
                             "type": "string",
-                            "pattern": "^[0-9]{7}"
+                            "pattern": "^[0-9]{7}$"
                         },
                         "uf": {
                             "required": true,
@@ -159,7 +159,7 @@ $jsonSchema = '{
                         "cep": {
                             "required": true,
                             "type": "string",
-                            "pattern": "^[0-9]{8}"
+                            "pattern": "^[0-9]{8}$"
                         }
                     }
                 }
@@ -178,7 +178,7 @@ $jsonSchema = '{
                 "codigocnae": {
                     "required": false,
                     "type": ["string","null"],
-                    "pattern": "^[0-9]{7}"
+                    "pattern": "^[0-9]{7}$"
                 },
                 "codigotributacaomunicipio": {
                     "required": true,
@@ -195,7 +195,7 @@ $jsonSchema = '{
                 "codigomunicipio": {
                     "required": true,
                     "type": "string",
-                    "pattern": "^[0-9]{7}"
+                    "pattern": "^[0-9]{7}$"
                 },
                 "valores": {
                     "required": true,
@@ -232,7 +232,7 @@ $jsonSchema = '{
                         "issretido": {
                             "required": true,
                             "type": "integer",
-                            "pattern": "^[1-2]{1}"
+                            "pattern": "^[1-2]{1}$"
                         },
                         "valoriss": {
                             "required": false,
@@ -279,12 +279,12 @@ $jsonSchema = '{
                 "cnpj": {
                     "required": false,
                     "type": ["string","null"],
-                    "pattern": "^[0-9]{14}"
+                    "pattern": "^[0-9]{14}$"
                 },
                 "cpf": {
                     "required": false,
                     "type": ["string","null"],
-                    "pattern": "^[0-9]{11}"
+                    "pattern": "^[0-9]{11}$"
                 },
                 "inscricaomunicipal": {
                     "required": false,
@@ -386,7 +386,7 @@ $std->servico->valores->descontoincondicionado = 10.00;
 $std->servico->valores->descontocondicionado = 10.00;
 
 $std->Intermediarioservico = new \stdClass();
-$std->Intermediarioservico->RazaoSocial = 'INSCRICAO DE TESTE SIATU - D AGUA -PAULINO S'; 
+$std->Intermediarioservico->RazaoSocial = 'INSCRICAO DE TESTE SIATU - D AGUA -PAULINO S';
 $std->Intermediarioservico->Cnpj = '99999999000191';
 $std->Intermediarioservico->InscricaoMunicipal = '8041700010';
 
