@@ -20,6 +20,8 @@ API para integraçao para geração de NFSe (Prefeituras) com o modelo ISS.NET
 
 ## Importante
 
+> **CASCAVEL-PR passa a usar o provedor IPM a partir de 01/06/2020**
+
 > O provedor ISS.NET não tem ambiente de homologação disponível livremente, para usar o ambiente de testes é necessário solicitar esse acesso pela NotaControl pelo email: atendimento@notacontrol.com.br. O suporte desse provedor NotaControl é pago, então não espere muita ajuda e/ou informações deles.
 > Esse acesso ao ambiente de homologação é limitado a 50 RPS.
 
@@ -59,20 +61,19 @@ API para integraçao para geração de NFSe (Prefeituras) com o modelo ISS.NET
 |25|Juara|MT|5105101|
 |26|Paranatinga|MT|5106307|
 |27|Barcarena|PA|1501303|
-|28|Cascavel|PR|4104808|
-|29|Barra Mansa|RJ|3300407|
-|30|Duque de Caxias|RJ|3301702|
-|31|Itatiaia|RJ|3302254|
-|32|Cruz Alta|RS|4306106|
-|33|Novo Hamburgo|RS|4313409|
-|34|Santa Maria|RS|4316907|
-|35|Andradina|SP|3502101|
-|36|Birigui|SP|3506508|
-|37|Lorena|SP|3527207|
-|38|Jacarei|SP|3524402|
-|39|Praia Grande|SP|3541000|
-|40|Sao Vicente|SP|3551009|
-|41|Serrana|SP|3551504|
+|28|Barra Mansa|RJ|3300407|
+|29|Duque de Caxias|RJ|3301702|
+|30|Itatiaia|RJ|3302254|
+|31|Cruz Alta|RS|4306106|
+|32|Novo Hamburgo|RS|4313409|
+|33|Santa Maria|RS|4316907|
+|34|Andradina|SP|3502101|
+|35|Birigui|SP|3506508|
+|36|Lorena|SP|3527207|
+|37|Jacarei|SP|3524402|
+|38|Praia Grande|SP|3541000|
+|39|Sao Vicente|SP|3551009|
+|40|Serrana|SP|3551504|
 
 
 ## Dependências
